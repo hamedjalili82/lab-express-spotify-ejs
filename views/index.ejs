@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Spotify Artist Search</title>
 </head>
 <body>
-    <%- body %>
+    <h1>Spotify Artist Search</h1>
+    <form action="/artist-search" method="GET">
+        <input type="text" name="artist" placeholder="Enter artist name" required>
+        <button type="submit">Search</button>
+      </form>
 </body>
 </html>
