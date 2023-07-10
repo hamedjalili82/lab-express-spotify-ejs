@@ -47,6 +47,7 @@ app.get('/', (req, res) => {
     })
 })
 
+// Route for the atrist search
 app.get('/artist-search', (req, res) => {
   const artistQuery = req.query.artist;
 
@@ -57,8 +58,33 @@ app.get('/artist-search', (req, res) => {
       res.render('artist-search-results', { artists });
     })
     .catch(err => console.log('The error while searching artists occurred: ', err));
-});
+})
 
+// Route for the album search
+app.get('/albums/:artistId', (req, res, next) => {
+  const artistId = req.params.artistId;
+
+  spotifyApi
+    .getArtistAlbums(artistId)
+    .then(data => {
+      const albums = data.body.items;
+      res.render('albums', { albums });
+    })
+    .catch(err => console.log('The error while getting artist albums occurred: ', err));
+})
+
+// Route for the track search
+app.get('/tracks/:albumId', (req, res, next) => {
+  const albumId = req.params.albumId;
+
+  spotifyApi
+    .getAlbumTracks(albumId)
+    .then(data => {
+      const tracks = data.body.items;
+      res.render('tracks', { tracks });
+    })
+    .catch(err => console.log('The error while getting album tracks occurred: ', err));
+})
 
 
 app.listen(3000, () => console.log('My Spotify project running on port 3000 🎧 🥁 🎸 🔊'))

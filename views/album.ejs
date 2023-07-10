@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Artist Albums</title>
+</head>
+<body>
+  <h1>Artist Albums</h1>
+  <% albums.forEach(album => { %>
+    <div>
+      <h3><%= album.name %></h3>
+      <% if (album.images.length > 0) { %>
+        <img src="<%= album.images[0].url %>" alt="<%= album.name %>">
+      <% } else { %>
+        <p>No cover image available</p>
+      <% } %>
+    </div>
+  <% }) %>
+</body>
+</html>
